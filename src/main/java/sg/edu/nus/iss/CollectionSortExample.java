@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CollectionSortExample {
 
@@ -42,11 +43,16 @@ public class CollectionSortExample {
         // sorting on ascending order by full name as the compare to function is by full
         // name on the employee page
         Collections.sort(employees);
-        //System.out.println("Employees sorted: " + employees);
+        // System.out.println("Employees sorted: " + employees);
 
-        //using Comparator and lambda
+        // using Comparator and lambda
         employees.sort(Comparator.comparing(e -> e.getSalary()));
-        System.out.println("Sorted by salary: "+ employees);
+        System.out.println("Sorted by salary: " + employees);
+
+        List<Employee> filteredEmployee = employees.stream().filter(e -> e.getFullName().equalsIgnoreCase("Jon"))
+                .collect(Collectors.toList());
+        System.out.println("Filter employees: " + filteredEmployee);
+
     }
 
 }
